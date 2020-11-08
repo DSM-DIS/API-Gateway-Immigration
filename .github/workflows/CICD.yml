@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Java CI CD with Gradle
 
 on:
   push:
@@ -47,7 +47,7 @@ jobs:
       - name: Create Docker Image
         run: docker build --tag apigateway .
 
-      - name: Upload to Registry
+      - name: Upload to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: 0816jinjin/apigateway
