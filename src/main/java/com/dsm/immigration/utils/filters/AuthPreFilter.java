@@ -49,7 +49,7 @@ public class AuthPreFilter extends ZuulFilter {
     public Object run() throws ZuulException {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://gangwon")
+                .baseUrl("http://gangwon:8080")
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
