@@ -33,10 +33,10 @@ public class SlicePreFilter extends ZuulFilter {
         String uri = URISlicer.slice(request.getRequestURI());
 
         if(uri.equals("/user/diary-books")) {
-            request.setAttribute("baseUrl", "http://hwanghae");
+            request.setAttribute("baseUrl", "http://hwanghae:8891");
             request.setAttribute("method", "GET");
         } else if(uri.equals("/diary-book/participaint")) {
-            request.setAttribute("baseUrl", "http://pyeongan");
+            request.setAttribute("baseUrl", "http://pyeongan:8892");
             request.setAttribute("method", "POST");
         }
 
