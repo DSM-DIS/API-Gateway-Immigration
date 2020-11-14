@@ -35,7 +35,6 @@ public class AuthPreFilter extends ZuulFilter {
         HttpServletRequest request = context.getRequest();
         String httpMethodName = request.getMethod();
         String uri = request.getRequestURI();
-        System.out.println("HTTP METHOD : " + httpMethodName);
 
         if(httpMethodName.equals("POST") && uri.equals("/auth")) {
             return false;
@@ -49,7 +48,7 @@ public class AuthPreFilter extends ZuulFilter {
     public Object run() throws ZuulException {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://gangwon:8080")
+                .baseUrl("http://api.diarystory.site")
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
