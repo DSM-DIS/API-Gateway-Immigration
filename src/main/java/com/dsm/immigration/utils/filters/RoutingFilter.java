@@ -38,8 +38,10 @@ public class RoutingFilter extends ZuulFilter {
 
         HttpServletRequest request = context.getRequest();
         String userId = (String) request.getAttribute("userId");
-        String baseUrl = (String) request.getAttribute("baseUrl");
-        String method = (String) request.getAttribute("method");
+//        String baseUrl = (String) request.getAttribute("baseUrl");
+//        String method = (String) request.getAttribute("method");
+        String baseUrl = "https://api.diarystory.site";
+        String method = request.getMethod();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -57,6 +59,10 @@ public class RoutingFilter extends ZuulFilter {
                 zuulTestRequestConnectionService.get(uri, userId, body).execute();
             } else if(method.equals("POST")) {
                 zuulTestRequestConnectionService.post(uri, userId, body).execute();
+            } else if(method.equals("PATCH")) {
+                zuulTestRequestConnectionService.patch(uri, userId, body).execute();
+            } else if(method.equals("DELETE")) {
+                zuulTestRequestConnectionService.delete(uri, userId, body).execute();
             }
         } catch (IOException e) {
             e.printStackTrace();
