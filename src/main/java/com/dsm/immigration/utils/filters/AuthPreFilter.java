@@ -8,6 +8,8 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class AuthPreFilter extends ZuulFilter {
+
+    private final static Logger log = LoggerFactory.getLogger(AuthPreFilter.class);
 
     private RequestContext context = RequestContext.getCurrentContext();
 
@@ -35,6 +39,8 @@ public class AuthPreFilter extends ZuulFilter {
         HttpServletRequest request = context.getRequest();
         String httpMethodName = request.getMethod();
         String uri = request.getRequestURI();
+
+        log.info(String.format("request %s", uri));
 
         if(httpMethodName.equals("POST") && uri.equals("/auth")) {
             System.out.println("/auth POST 요청");
