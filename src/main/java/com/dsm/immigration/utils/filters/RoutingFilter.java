@@ -38,10 +38,8 @@ public class RoutingFilter extends ZuulFilter {
 
         HttpServletRequest request = context.getRequest();
         String userId = (String) request.getAttribute("userId");
-//        String baseUrl = (String) request.getAttribute("baseUrl");
-//        String method = (String) request.getAttribute("method");
-        String baseUrl = "https://api.diarystory.site";
-        String method = request.getMethod();
+        String baseUrl = (String) request.getAttribute("baseUrl");
+        String method = (String) request.getAttribute("method");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
