@@ -43,6 +43,7 @@ public class AuthPreFilter extends ZuulFilter {
             System.out.println("/user POST 요청");
             return false;
         }
+        System.out.println("요청은 들어옴");
         return true;
     }
 
