@@ -9,5 +9,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulServer;
 public class ImmigrationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ImmigrationApplication.class, args);
+		System.out.println("이거 나오냐");
 	}
 }
