@@ -44,6 +44,7 @@ public class AuthPreFilter extends ZuulFilter {
         if(httpMethodName.equals("POST") && uri.equals("/auth")) {
             return false;
         } else if(httpMethodName.equals("POST") && uri.equals("/user")) {
+            System.out.println("/user POST");
             return false;
         }
         System.out.println("요청은 들어옴");
@@ -53,22 +54,23 @@ public class AuthPreFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
+        System.out.println("dsafasdfadfasd");
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.diarystory.site")
+                .baseUrl("https://gangwon:8080")
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .build();
 
         HttpServletRequest request = context.getRequest();
-        String uri = URISlicer.slice(request.getRequestURI());
+        String uri = "/user";
         String accessToken = request.getHeader("Authorization");
 
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {
             Response<String> response = zuulTestRequestConnectionService.get(uri, accessToken,null).execute();
-            HttpServletRequest httpServletRequest = context.getRequest();
-            httpServletRequest.setAttribute("userId", response.body());
+            request.setAttribute("userId", response.body());
         } catch (IOException e) {
             e.printStackTrace();
         }
