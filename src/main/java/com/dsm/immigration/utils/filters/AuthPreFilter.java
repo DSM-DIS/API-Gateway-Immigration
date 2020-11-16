@@ -9,6 +9,7 @@ import com.netflix.zuul.exception.ZuulException;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,6 +18,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+@Component
 public class AuthPreFilter extends ZuulFilter {
 
     private final static Logger log = LoggerFactory.getLogger(AuthPreFilter.class);

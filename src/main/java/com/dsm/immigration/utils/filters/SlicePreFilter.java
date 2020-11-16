@@ -4,9 +4,11 @@ import com.dsm.immigration.domains.service.URISlicer;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Component
 public class SlicePreFilter extends ZuulFilter {
 
     private RequestContext context = RequestContext.getCurrentContext();
