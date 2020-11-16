@@ -1,3 +1,7 @@
+ribbon:
+  eureka:
+    enabled: false
+
 server:
   address: 0.0.0.0
   port: 8890
