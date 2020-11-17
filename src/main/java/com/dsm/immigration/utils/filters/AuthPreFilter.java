@@ -1,7 +1,6 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
-import com.dsm.immigration.domains.service.URISlicer;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
