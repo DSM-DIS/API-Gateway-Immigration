@@ -5,7 +5,7 @@ public class URISlicer {
         char[] chars = uri.toCharArray();
         for(int i = 1 ; i < chars.length ; i++) {
             if(chars[i] == '/') {
-                return uri.substring(i + 1);
+                return uri.substring(i - 1 + 1);
             }
         }
         return "/";
