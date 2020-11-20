@@ -22,7 +22,6 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        System.out.println("route");
         return "route";
     }
 
@@ -33,6 +32,7 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        System.out.println("route");
         return true;
     }
 
