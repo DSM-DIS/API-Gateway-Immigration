@@ -55,8 +55,6 @@ public class AuthPreFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
-        System.out.println("dsafasdfadfasd");
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://gangwon:8080")
                 .client(new OkHttpClient().newBuilder().build())
