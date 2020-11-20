@@ -62,13 +62,13 @@ public class RoutingFilter extends ZuulFilter {
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {
             if(method.equals("GET")) {
-                zuulTestRequestConnectionService.get(uri, userId, body).execute();
+                zuulTestRequestConnectionService.get(uri, userId).execute();
             } else if(method.equals("POST")) {
                 zuulTestRequestConnectionService.post(uri, userId, body).execute();
             } else if(method.equals("PATCH")) {
                 zuulTestRequestConnectionService.patch(uri, userId, body).execute();
             } else if(method.equals("DELETE")) {
-                zuulTestRequestConnectionService.delete(uri, userId, body).execute();
+                zuulTestRequestConnectionService.delete(uri, userId).execute();
             }
         } catch (IOException e) {
             e.printStackTrace();

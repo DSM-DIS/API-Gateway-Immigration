@@ -37,11 +37,8 @@ public class AuthPreFilter extends ZuulFilter {
 
         RequestContext context = RequestContext.getCurrentContext();
         System.out.println("Auth Pre Filter");
-        System.out.println("context : " + context);
         HttpServletRequest request = context.getRequest();
-        System.out.println("request : " + request);
         String httpMethodName = request.getMethod();
-        System.out.println("httpMethodName : " + httpMethodName);
         String uri = request.getRequestURI();
 
         log.info(String.format("request %s", uri));
@@ -75,7 +72,7 @@ public class AuthPreFilter extends ZuulFilter {
 
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {
-            Response<String> response = zuulTestRequestConnectionService.get(uri, accessToken,null).execute();
+            Response<String> response = zuulTestRequestConnectionService.get(uri, accessToken).execute();
             request.setAttribute("userId", response.body());
         } catch (IOException e) {
             e.printStackTrace();
