@@ -1,3 +1,7 @@
+zuul:
+  routes:
+    gangwon.path:
+
 ribbon:
   eureka:
     enabled: false
