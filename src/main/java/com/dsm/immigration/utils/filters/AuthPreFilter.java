@@ -1,6 +1,7 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
+import com.dsm.immigration.domains.service.URISlicer;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -39,9 +40,8 @@ public class AuthPreFilter extends ZuulFilter {
         System.out.println("Auth Pre Filter");
         HttpServletRequest request = context.getRequest();
         String httpMethodName = request.getMethod();
-        String uri = request.getRequestURI();
-
-
+        String uri = URISlicer.slice(request.getRequestURI());
+        
         log.info(String.format("request %s", uri));
 
         if(httpMethodName.equals("POST") && uri.equals("/auth")) {
