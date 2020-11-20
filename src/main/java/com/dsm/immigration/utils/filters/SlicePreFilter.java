@@ -15,6 +15,7 @@ public class SlicePreFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
+        System.out.println("slice");
         return "pre";
     }
 
