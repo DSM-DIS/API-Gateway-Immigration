@@ -37,6 +37,7 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        System.out.println("Routing Filter");
 
         HttpServletRequest request = context.getRequest();
         String userId = (String) request.getAttribute("userId");
