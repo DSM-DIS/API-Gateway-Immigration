@@ -22,8 +22,6 @@ public class AuthPreFilter extends ZuulFilter {
 
     private final static Logger log = LoggerFactory.getLogger(AuthPreFilter.class);
 
-    private final RequestContext context = RequestContext.getCurrentContext();
-
     @Override
     public String filterType() {
         return "pre";
@@ -36,10 +34,10 @@ public class AuthPreFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+
+        RequestContext context = RequestContext.getCurrentContext();
         System.out.println("Auth Pre Filter");
         System.out.println("context : " + context);
-        String path = context.getRouteHost().getPath();
-        System.out.println("path : " + path);
         HttpServletRequest request = context.getRequest();
         System.out.println("request : " + request);
         String httpMethodName = request.getMethod();
@@ -61,6 +59,8 @@ public class AuthPreFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
+        RequestContext context = RequestContext.getCurrentContext();
+        
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://gangwon:8080")
                 .client(new OkHttpClient().newBuilder().build())
