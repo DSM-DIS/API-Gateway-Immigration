@@ -28,7 +28,7 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 1;
+        return 100;
     }
 
     @Override

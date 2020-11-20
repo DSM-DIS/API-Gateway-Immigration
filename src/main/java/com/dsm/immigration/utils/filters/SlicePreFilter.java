@@ -21,7 +21,7 @@ public class SlicePreFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 2;
+        return 5;
     }
 
     @Override
