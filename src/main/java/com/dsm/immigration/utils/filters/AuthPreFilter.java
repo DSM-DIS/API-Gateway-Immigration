@@ -38,6 +38,8 @@ public class AuthPreFilter extends ZuulFilter {
     public boolean shouldFilter() {
         System.out.println("Auth Pre Filter");
         System.out.println("context : " + context);
+        String path = context.getRouteHost().getPath();
+        System.out.println("path : " + path);
         HttpServletRequest request = context.getRequest();
         System.out.println("request : " + request);
         String httpMethodName = request.getMethod();
