@@ -37,8 +37,11 @@ public class AuthPreFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         System.out.println("Auth Pre Filter");
+        System.out.println("context : " + context);
         HttpServletRequest request = context.getRequest();
+        System.out.println("request : " + request);
         String httpMethodName = request.getMethod();
+        System.out.println("httpMethodName : " + httpMethodName);
         String uri = request.getRequestURI();
 
         log.info(String.format("request %s", uri));
