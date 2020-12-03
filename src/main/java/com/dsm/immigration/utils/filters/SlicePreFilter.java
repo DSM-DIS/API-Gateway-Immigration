@@ -30,16 +30,10 @@ public class SlicePreFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         System.out.println("Slice Pre Filter");
         RequestContext context = RequestContext.getCurrentContext();
-        System.out.println("context : " + context);
         HttpServletRequest request = context.getRequest();
-        System.out.println("request : " + request);
-        System.out.println("1");
         String beforeURI = request.getRequestURI();
-        System.out.println("2");
         String uri = URISlicer.slice(beforeURI);
-        System.out.println("3");
         String method = request.getMethod();
-        System.out.println("4");
 
         if(uri.equals("/user")) {
 //            if(method.equals("POST")) {

@@ -18,8 +18,6 @@ import java.io.IOException;
 @Component
 public class RoutingFilter extends ZuulFilter {
 
-    private RequestContext context = RequestContext.getCurrentContext();
-
     @Override
     public String filterType() {
         return "route";
@@ -32,7 +30,6 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        System.out.println("route");
         return true;
     }
 
@@ -40,7 +37,9 @@ public class RoutingFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         System.out.println("Routing Filter");
 
+        RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
+
         String userId = (String) request.getAttribute("userId");
         String baseUrl = (String) request.getAttribute("baseUrl");
         String method = (String) request.getAttribute("method");
