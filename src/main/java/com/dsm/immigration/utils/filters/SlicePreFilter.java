@@ -31,9 +31,10 @@ public class SlicePreFilter extends ZuulFilter {
         System.out.println("Slice Pre Filter");
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        String beforeURI = request.getRequestURI();
-        System.out.println("beforeURI : " + beforeURI);
-        String uri = URISlicer.slice(beforeURI);
+//        String beforeURI = request.getRequestURI();
+//        System.out.println("beforeURI : " + beforeURI);
+//        String uri = URISlicer.slice(beforeURI);
+        String uri = request.getRequestURI();
         String method = request.getMethod();
 
         if(uri.equals("/user")) {
