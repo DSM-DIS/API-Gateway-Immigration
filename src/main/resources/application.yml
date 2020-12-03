@@ -1,7 +1,7 @@
-zuul:
-  routes:
-    gangwon.path:
-    hwanghae.path:
+#zuul:
+#  routes:
+#    gangwon.path:
+#    hwanghae.path:
 
 ribbon:
   eureka:
