@@ -34,10 +34,12 @@ public class SlicePreFilter extends ZuulFilter {
 
         HttpServletRequest request = context.getRequest();
         System.out.println("1");
-        String uri = URISlicer.slice(request.getRequestURI());
+        String beforeURI = request.getRequestURI();
         System.out.println("2");
-        String method = request.getMethod();
+        String uri = URISlicer.slice(beforeURI);
         System.out.println("3");
+        String method = request.getMethod();
+        System.out.println("4");
 
         if(uri.equals("/user")) {
 //            if(method.equals("POST")) {
