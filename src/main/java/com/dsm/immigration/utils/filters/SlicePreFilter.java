@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class SlicePreFilter extends ZuulFilter {
 
-    private RequestContext context = RequestContext.getCurrentContext();
-
     @Override
     public String filterType() {
         return "pre";
@@ -31,7 +29,7 @@ public class SlicePreFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         System.out.println("Slice Pre Filter");
-
+        RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         System.out.println("1");
         String beforeURI = request.getRequestURI();
