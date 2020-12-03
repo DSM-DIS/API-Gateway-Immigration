@@ -75,6 +75,10 @@ public class RoutingFilter extends ZuulFilter {
             e.printStackTrace();
         }
 
+        System.out.println("uri : " + uri);
+        System.out.println("userId : " + userId);
+        System.out.println("body : " + body);
+
         return null;
     }
 }
