@@ -25,7 +25,6 @@ public class SlicePreFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        System.out.println("slice");
         return true;
     }
 
@@ -45,7 +44,7 @@ public class SlicePreFilter extends ZuulFilter {
 //            } else if(method.equals("DELETE")) {
 //                request.setAttribute("baseUrl", "https://gangwon:8080");
 //            }
-            request.setAttribute("baseUrl", "https://gangwon:8080");
+            request.setAttribute("baseUrl", "https://dis_gangwon:8080");
         } else if(uri.equals("/auth")) {
             request.setAttribute("baseUrl", "https://gangwon:8080");
         } else if (uri.equals("/diary-book")) {
