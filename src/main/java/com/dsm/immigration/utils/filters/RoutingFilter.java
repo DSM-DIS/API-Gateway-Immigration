@@ -61,7 +61,9 @@ public class RoutingFilter extends ZuulFilter {
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {
             if(method.equals("GET")) {
+                System.out.println("들어가기 전");
                 zuulTestRequestConnectionService.get(uri, userId).execute();
+                System.out.println("들어간 후");
             } else if(method.equals("POST")) {
                 zuulTestRequestConnectionService.post(uri, userId, body).execute();
             } else if(method.equals("PATCH")) {
