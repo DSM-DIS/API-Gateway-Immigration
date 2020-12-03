@@ -55,19 +55,23 @@ public class RoutingFilter extends ZuulFilter {
         String uri = URISlicer.slice(request.getRequestURI());
         String body = context.getResponseBody();
 
-        DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
+        System.out.println("uri : " + uri);
+        System.out.println("userId : " + userId);
+        System.out.println("context.body : " + context.getResponseBody());
+
+        DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
         Response<String> response = null;
         try {
             if(method.equals("GET")) {
                 System.out.println("들어가기 전");
-                response = zuulTestRequestConnectionService.get(uri, userId).execute();
+                response = service.get(uri, userId).execute();
                 System.out.println("들어간 후");
             } else if(method.equals("POST")) {
-                response = zuulTestRequestConnectionService.post(uri, userId, body).execute();
+                response = service.post(uri, userId, body).execute();
             } else if(method.equals("PATCH")) {
-                response = zuulTestRequestConnectionService.patch(uri, userId, body).execute();
+                response = service.patch(uri, userId, body).execute();
             } else if(method.equals("DELETE")) {
-                response = zuulTestRequestConnectionService.delete(uri, userId).execute();
+                response = service.delete(uri, userId).execute();
             }
         } catch (IOException e) {
             e.printStackTrace();

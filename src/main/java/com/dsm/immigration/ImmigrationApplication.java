@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @EnableZuulServer
 @SpringBootApplication
-@RestController
+//@RestController
 public class ImmigrationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ImmigrationApplication.class, args);
 	}
 
-	@GetMapping("/aaa")
-	public String getMapping() {
-		return "aaa 요청 들어옴";
-	}
+//	@GetMapping("/aaa")
+//	public String getMapping() {
+//		return "aaa 요청 들어옴";
+//	}
 }
