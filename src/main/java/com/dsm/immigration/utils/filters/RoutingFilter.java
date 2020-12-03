@@ -55,10 +55,6 @@ public class RoutingFilter extends ZuulFilter {
         String uri = URISlicer.slice(request.getRequestURI());
         String body = context.getResponseBody();
 
-        System.out.println("uri : " + uri);
-        System.out.println("userId : " + userId);
-        System.out.println("body : " + body);
-
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
         Response<String> response = null;
         try {
@@ -81,7 +77,8 @@ public class RoutingFilter extends ZuulFilter {
 
         System.out.println("uri : " + uri);
         System.out.println("userId : " + userId);
-        System.out.println("body : " + body);
+        System.out.println("response.body : " + response.body());
+        System.out.println("context.body : " + context.getResponseBody());
 
         return null;
     }
