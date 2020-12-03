@@ -8,6 +8,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Component;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -59,21 +60,24 @@ public class RoutingFilter extends ZuulFilter {
         System.out.println("body : " + body);
 
         DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
+        Response<String> response = null;
         try {
             if(method.equals("GET")) {
                 System.out.println("들어가기 전");
-                zuulTestRequestConnectionService.get(uri, userId).execute();
+                response = zuulTestRequestConnectionService.get(uri, userId).execute();
                 System.out.println("들어간 후");
             } else if(method.equals("POST")) {
-                zuulTestRequestConnectionService.post(uri, userId, body).execute();
+                response = zuulTestRequestConnectionService.post(uri, userId, body).execute();
             } else if(method.equals("PATCH")) {
-                zuulTestRequestConnectionService.patch(uri, userId, body).execute();
+                response = zuulTestRequestConnectionService.patch(uri, userId, body).execute();
             } else if(method.equals("DELETE")) {
-                zuulTestRequestConnectionService.delete(uri, userId).execute();
+                response = zuulTestRequestConnectionService.delete(uri, userId).execute();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        context.setResponseBody(response.body());
 
         System.out.println("uri : " + uri);
         System.out.println("userId : " + userId);
