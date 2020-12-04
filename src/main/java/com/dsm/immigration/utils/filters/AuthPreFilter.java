@@ -54,7 +54,6 @@ public class AuthPreFilter extends ZuulFilter {
         } else if(uri.equals("/testtesttest")) {
             return false;
         }
-        System.out.println("요청은 들어옴");
         return true;
     }
 
