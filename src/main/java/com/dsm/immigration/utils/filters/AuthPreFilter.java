@@ -43,11 +43,11 @@ public class AuthPreFilter extends ZuulFilter {
 
         log.info(String.format("request %s", uri));
 
-        if(httpMethodName.equals("POST") && uri.equals("/auth")) {
+        if(httpMethodName.equals("POST") && uri.equals("auth")) {
             return false;
-        } else if(httpMethodName.equals("POST") && uri.equals("/user")) {
+        } else if(httpMethodName.equals("POST") && uri.equals("user")) {
             return false;
-        } else if(uri.equals("/testtesttest")) {
+        } else if(uri.equals("testtesttest")) {
             return false;
         }
         return true;
