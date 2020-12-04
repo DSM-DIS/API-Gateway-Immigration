@@ -55,7 +55,8 @@ public class RoutingFilter extends ZuulFilter {
         String uri = URISlicer.slice(request.getRequestURI());
 //        String uri = request.getRequestURI();
         String body = context.getResponseBody();
-
+        
+        System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);
         System.out.println("userId : " + userId);
         System.out.println("context.body : " + context.getResponseBody());
