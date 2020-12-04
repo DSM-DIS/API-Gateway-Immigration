@@ -55,12 +55,10 @@ public class AuthPreFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        System.out.println("여따 들어왔누");
-
         RequestContext context = RequestContext.getCurrentContext();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://gangwon:8080")
+                .baseUrl("http://gangwon:8080")
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))

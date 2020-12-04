@@ -35,8 +35,6 @@ public class RoutingFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        System.out.println("Routing Filter");
-
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
 
@@ -45,7 +43,7 @@ public class RoutingFilter extends ZuulFilter {
         String method = (String) request.getAttribute("method");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://hwanghae:8891")
+                .baseUrl(baseUrl)
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
