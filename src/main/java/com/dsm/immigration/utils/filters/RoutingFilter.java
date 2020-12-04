@@ -85,6 +85,7 @@ public class RoutingFilter extends ZuulFilter {
         System.out.println("response.body : " + response.body());
         System.out.println("header to string : " + response.headers().toString());
         System.out.println("code : " + response.code());
+        System.out.println("message : " + response.message());
         System.out.println("context.body : " + afterContext.getResponseBody());
 
         return null;
