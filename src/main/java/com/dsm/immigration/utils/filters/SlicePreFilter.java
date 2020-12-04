@@ -29,7 +29,7 @@ public class SlicePreFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        String uri = request.getRequestURI().substring(1);
+        String uri = (String) request.getAttribute("uri");
         String method = request.getMethod();
 
         if(uri.equals("/user")) {

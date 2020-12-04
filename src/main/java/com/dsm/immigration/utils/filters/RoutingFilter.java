@@ -51,7 +51,7 @@ public class RoutingFilter extends ZuulFilter {
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .build();
 
-        String uri = request.getRequestURI().substring(1);
+        String uri = (String) request.getAttribute("uri");
         String body = context.getResponseBody();
         
         System.out.println("baseUrl: " + baseUrl);
