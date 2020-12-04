@@ -1,6 +1,5 @@
 package com.dsm.immigration.utils.filters;
 
-import com.dsm.immigration.domains.service.URISlicer;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -28,12 +27,9 @@ public class SlicePreFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        System.out.println("Slice Pre Filter");
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        String beforeURI = request.getRequestURI();
-        String uri = URISlicer.slice(beforeURI);
-//        String uri = request.getRequestURI();
+        String uri = request.getRequestURI().substring(1);
         String method = request.getMethod();
 
         if(uri.equals("/user")) {

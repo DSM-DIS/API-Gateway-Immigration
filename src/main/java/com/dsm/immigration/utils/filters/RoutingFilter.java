@@ -1,7 +1,6 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
-import com.dsm.immigration.domains.service.URISlicer;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -52,8 +51,7 @@ public class RoutingFilter extends ZuulFilter {
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .build();
 
-        String uri = URISlicer.slice(request.getRequestURI());
-//        String uri = request.getRequestURI();
+        String uri = request.getRequestURI().substring(1);
         String body = context.getResponseBody();
         
         System.out.println("baseUrl: " + baseUrl);
