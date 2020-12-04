@@ -60,7 +60,7 @@ public class SlicePreFilter extends ZuulFilter {
         } else if(uri.equals("/diary-book/participant")) {
             request.setAttribute("baseUrl", "https://pyeongan:8892");
         } else if(uri.equals("/testtesttest")) {
-            request.setAttribute("baseUrl", "http://hwanghae:8891");
+            request.setAttribute("baseUrl", "http://dis_hwanghae:8891");
         } else {
             request.setAttribute("baseUrl", "localhost:8891");
         }
