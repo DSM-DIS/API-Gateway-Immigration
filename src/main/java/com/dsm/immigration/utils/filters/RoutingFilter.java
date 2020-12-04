@@ -46,7 +46,7 @@ public class RoutingFilter extends ZuulFilter {
         String method = (String) request.getAttribute("method");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://naver.com")
+                .baseUrl("http://dis_hwanghae")
                 .client(new OkHttpClient().newBuilder().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
