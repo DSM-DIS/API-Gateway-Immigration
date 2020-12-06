@@ -15,6 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 @Component
 public class RoutingFilter extends ZuulFilter {
@@ -62,10 +63,7 @@ public class RoutingFilter extends ZuulFilter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        reader.lines()
-                .forEach(System.out::println);
-
-        String body = "{}";
+        String body = reader.lines().findAny().orElse("{}");
 
         System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);
