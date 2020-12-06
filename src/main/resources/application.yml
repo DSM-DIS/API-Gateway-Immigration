@@ -1,6 +1,7 @@
 zuul:
   routes:
     testtesttest.path:
+    user.path:
 
 ribbon:
   eureka:

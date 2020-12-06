@@ -43,11 +43,11 @@ public class AuthPreFilter extends ZuulFilter {
 
         log.info(String.format("request %s", uri));
 
-        if(httpMethodName.equals("POST") && uri.equals("auth")) {
+        if(httpMethodName.equals("POST") && uri.equals("auth")) {           // 로그인
             return false;
-        } else if(httpMethodName.equals("POST") && uri.equals("user")) {
+        } else if(httpMethodName.equals("POST") && uri.equals("user")) {    // 회원가입
             return false;
-        } else if(uri.equals("testtesttest")) {
+        } else if(uri.equals("testtesttest")) {                             // 테스트
             return false;
         }
         return true;
@@ -65,12 +65,12 @@ public class AuthPreFilter extends ZuulFilter {
                 .build();
 
         HttpServletRequest request = context.getRequest();
-        String uri = "/user";
+        String uri = "user";
         String accessToken = request.getHeader("Authorization");
 
-        DiaryStoryRequestConnectionService zuulTestRequestConnectionService = retrofit.create(DiaryStoryRequestConnectionService.class);
+        DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {
-            Response<String> response = zuulTestRequestConnectionService.get(uri, accessToken).execute();
+            Response<String> response = service.get(uri, accessToken).execute();
             request.setAttribute("userId", response.body());
         } catch (IOException e) {
             e.printStackTrace();
