@@ -6,11 +6,11 @@ import retrofit2.http.*;
 import java.util.concurrent.Executor;
 
 public interface DiaryStoryRequestConnectionService {
-//    @Headers(value = {"accept: application/json", "content-type: application/json"})
+    @Headers(value = {"accept: application/json", "content-type: application/json"})
     @GET("/{uri}")
     Call<String> get(@Path("uri") String uri, @Header("userId") String userId);
 
-//    @Headers(value = {"accept: application/json", "content-type: application/json"})
+    @Headers(value = {"accept: application/json", "content-type: application/json"})
     @POST("/{uri}")
     Call<String> post(@Path("uri") String uri, @Header("userId") String userId, @Body String body);
 
