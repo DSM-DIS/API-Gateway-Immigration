@@ -65,7 +65,9 @@ public class RoutingFilter extends ZuulFilter {
                 response = service.get(uri, userId).execute();
                 System.out.println("들어간 후");
             } else if(method.equals("POST")) {
+                System.out.println("들어가기 전");
                 response = service.post(uri, userId, body).execute();
+                System.out.println("들어간 후");
             } else if(method.equals("PATCH")) {
                 response = service.patch(uri, userId, body).execute();
             } else if(method.equals("DELETE")) {
