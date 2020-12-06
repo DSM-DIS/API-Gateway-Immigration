@@ -50,8 +50,8 @@ public class RoutingFilter extends ZuulFilter {
                 .build();
 
         String uri = (String) request.getAttribute("uri");
-//        String body = context.getResponseBody();
-        String body = "{'number':'2417','name':'이진혁'}";
+        String body = context.getResponseBody();
+//        String body = "{'number':'2417','name':'이진혁'}";
         System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);
         System.out.println("userId : " + userId);
