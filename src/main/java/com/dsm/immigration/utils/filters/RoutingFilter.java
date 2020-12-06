@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.IOException;
 
 @Component
@@ -50,10 +51,22 @@ public class RoutingFilter extends ZuulFilter {
                 .build();
 
         String uri = (String) request.getAttribute("uri");
-        String number = (String) request.getAttribute("number");
-        String name = (String) request.getAttribute("name");
-        String body = "{'number':" + number + ",'name':" + name +"}";
-//        String body = "{'number':'2417','name':'이진혁'}";
+
+//        String number = (String) request.getAttribute("number");
+//        String name = (String) request.getAttribute("name");
+//        String body = "{'number':" + number + ",'name':" + name +"}";
+
+        BufferedReader reader = null;
+        try {
+            reader = request.getReader();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        reader.lines()
+                .forEach(System.out::println);
+
+        String body = "{}";
+
         System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);
         System.out.println("userId : " + userId);
