@@ -63,8 +63,11 @@ public class RoutingFilter extends ZuulFilter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String body = reader.lines().findAny().orElse("{}");
-//        String body = "{'number':'2417','name':'이진혁'}";
+
+        StringBuilder sb = new StringBuilder();
+        reader.lines()
+                .forEach(sb::append);
+        String body = sb.toString();
 
         System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);
