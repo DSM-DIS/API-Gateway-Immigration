@@ -94,13 +94,11 @@ public class RoutingFilter extends ZuulFilter {
             e.printStackTrace();
         }
 
-//        RequestContext afterContext = RequestContext.getCurrentContext();
-//        afterContext.setResponseBody(response.body());
         context.setResponseBody(response.body());
-
         System.out.println("response.body : " + response.body());
         System.out.println("code : " + response.code());
         System.out.println("message : " + response.message());
+        System.out.println(response.toString());
 
         return null;
     }
