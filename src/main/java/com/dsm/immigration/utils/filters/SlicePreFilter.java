@@ -57,6 +57,8 @@ public class SlicePreFilter extends ZuulFilter {
             request.setAttribute("baseUrl", "http://pyeongan:8892");
         } else if(uri.equals("testtesttest")) {
             request.setAttribute("baseUrl", "http://hwanghae:8891");
+        } else if (uri.equals("user/test")) {
+            request.setAttribute("baseUrl", "http://gangwon:8080");
         } else {
             request.setAttribute("baseUrl", "localhost:8891");
         }

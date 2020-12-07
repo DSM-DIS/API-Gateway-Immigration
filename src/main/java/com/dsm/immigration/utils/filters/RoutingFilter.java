@@ -68,6 +68,8 @@ public class RoutingFilter extends ZuulFilter {
         reader.lines()
                 .forEach(sb::append);
         String body = sb.toString();
+        if(body == null || body.equals(""))
+            body = "{}";
 
         System.out.println("baseUrl: " + baseUrl);
         System.out.println("uri : " + uri);

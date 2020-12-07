@@ -49,6 +49,8 @@ public class AuthPreFilter extends ZuulFilter {
             return false;
         } else if(uri.equals("testtesttest")) {                             // 테스트
             return false;
+        } else if(uri.equals("user/test")) {                                // 테스트
+            return false;
         }
         return true;
     }
