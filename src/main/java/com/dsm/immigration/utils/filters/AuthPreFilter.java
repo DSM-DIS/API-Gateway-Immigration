@@ -38,7 +38,7 @@ public class AuthPreFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         String httpMethodName = request.getMethod();
-        String uri = request.getRequestURI().substring(1);
+        String uri = request.getRequestURI();
         request.setAttribute("uri", uri);
 
         log.info(String.format("request %s", uri));
