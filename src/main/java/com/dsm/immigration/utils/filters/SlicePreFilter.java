@@ -32,7 +32,7 @@ public class SlicePreFilter extends ZuulFilter {
         String uri = (String) request.getAttribute("uri");
         String method = request.getMethod();
 
-        if(uri.equals("user")) {
+        if(uri.equals("/user")) {
 //            if(method.equals("POST")) {
 //                request.setAttribute("baseUrl", "https://gangwon:8080");
 //            } else if(method.equals("GET")) {
@@ -41,23 +41,23 @@ public class SlicePreFilter extends ZuulFilter {
 //                request.setAttribute("baseUrl", "https://gangwon:8080");
 //            }
             request.setAttribute("baseUrl", "http://gangwon:8080");
-        } else if(uri.equals("auth")) {
+        } else if(uri.equals("/auth")) {
             request.setAttribute("baseUrl", "http://gangwon:8080");
-        } else if (uri.equals("diary-book")) {
+        } else if (uri.equals("/diary-book")) {
             request.setAttribute("baseUrl", "http://hamgyeong:8080");
-        } else if (uri.startsWith("diary-book")) {
+        } else if (uri.startsWith("/diary-book")) {
             if (method.equals("GET")) {
                 request.setAttribute("baseUrl", "http://jeju:4008");
             } else if (method.equals("POST")) {
                 request.setAttribute("baseUrl", "http://jeju:4008");
             }
-        } else if(uri.equals("user/diary-books")) {
+        } else if(uri.equals("/user/diary-books")) {
             request.setAttribute("baseUrl", "http://hwanghae:8891");
-        } else if(uri.equals("diary-book/participant")) {
+        } else if(uri.equals("/diary-book/participant")) {
             request.setAttribute("baseUrl", "http://pyeongan:8892");
-        } else if(uri.equals("testtesttest")) {
+        } else if(uri.equals("/testtesttest")) {
             request.setAttribute("baseUrl", "http://hwanghae:8891");
-        } else if (uri.equals("user/test")) {
+        } else if (uri.equals("/user/test")) {
             request.setAttribute("baseUrl", "http://gangwon:8080");
         } else {
             request.setAttribute("baseUrl", "localhost:8891");

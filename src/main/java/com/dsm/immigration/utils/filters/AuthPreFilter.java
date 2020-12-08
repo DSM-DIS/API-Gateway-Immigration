@@ -41,7 +41,7 @@ public class AuthPreFilter extends ZuulFilter {
         String uri = request.getRequestURI();
         request.setAttribute("uri", uri);
 
-        log.info(String.format("request %s", uri));
+        log.info(String.format("request %s [%s]", uri, httpMethodName));
 
         if(httpMethodName.equals("POST") && uri.equals("auth")) {           // 로그인
             return false;
