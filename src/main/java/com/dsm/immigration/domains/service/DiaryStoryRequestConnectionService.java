@@ -10,9 +10,13 @@ public interface DiaryStoryRequestConnectionService {
     @GET("/{uri}")
     Call<String> get(@Path("uri") String uri, @Header("userId") String userId);
 
+//    @Headers(value = {"accept: application/json", "content-type: application/json"})
+//    @POST("/{uri}")
+//    Call<String> post(@Path("uri") String uri, @Header("userId") String userId, @Body String body);
+
     @Headers(value = {"accept: application/json", "content-type: application/json"})
-    @POST("/{uri}")
-    Call<String> post(@Path("uri") String uri, @Header("userId") String userId, @Body String body);
+    @POST
+    Call<String> post(@Url String uri, @Header("userId") String userId, @Body String body);
 
     @Headers(value = {"accept: application/json", "content-type: application/json"})
     @PATCH("/{uri}")
