@@ -2,6 +2,7 @@ zuul:
   routes:
     testtesttest.path:
     user.path:
+    auth.path:
 
 ribbon:
   eureka:
