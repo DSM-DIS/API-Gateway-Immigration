@@ -53,10 +53,6 @@ public class RoutingFilter extends ZuulFilter {
 
         String uri = (String) request.getAttribute("uri");
 
-//        String number = (String) request.getAttribute("number");
-//        String name = (String) request.getAttribute("name");
-//        String body = "{'number':" + number + ",'name':" + name +"}";
-
         BufferedReader reader = null;
         try {
             reader = request.getReader();
