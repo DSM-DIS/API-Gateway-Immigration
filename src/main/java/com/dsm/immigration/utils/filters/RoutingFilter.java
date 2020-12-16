@@ -1,6 +1,7 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -92,7 +93,7 @@ public class RoutingFilter extends ZuulFilter {
             e.printStackTrace();
         }
 
-        context.setResponseBody(response.body());
+        context.setResponseBody(new Gson().toJson(response.body()));
         context.setResponseStatusCode(response.code());
         context.set("message", response.message());
         System.out.println("response.body : " + response.body());
