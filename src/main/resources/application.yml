@@ -3,6 +3,7 @@ zuul:
     testtesttest.path:
     user.path:
     auth.path:
+    diary-book.path:
 
 ribbon:
   eureka:
