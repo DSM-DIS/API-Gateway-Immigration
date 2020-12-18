@@ -1,5 +1,6 @@
 package com.dsm.immigration.utils.filters;
 
+import com.dsm.immigration.domains.service.AuthorizationRequestConnectionService;
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
@@ -74,10 +75,10 @@ public class AuthPreFilter extends ZuulFilter {
         log.info(String.format("request %s [%s]", uri, context.getRequest().getMethod()));
         System.out.println("accessToken : " + accessToken);
 
-        DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
+        AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
         try {
             System.out.println("강원 들어가기 전");
-            Response<String> response = service.get(uri, accessToken).execute();
+            Response<String> response = service.get(accessToken).execute();
             System.out.println("강원 들어간 후");
             System.out.println("가져온 userId :: " + response.body());
             request.setAttribute("userId", response.body());
