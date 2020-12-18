@@ -94,12 +94,10 @@ public class RoutingFilter extends ZuulFilter {
         }
 
 //        context.setResponseBody(new Gson().toJson(response.body()));
-        context.setResponseBody(response.body());
+        Gson gson = new Gson();
+        String responseBody = gson.toJson(response.body());
+        context.setResponseBody(responseBody);
         context.setResponseStatusCode(response.code());
-        context.set("message", response.message());
-        System.out.println("response.body : " + response.body());
-        System.out.println("code : " + response.code());
-        System.out.println("message : " + response.message());
         System.out.println(response.toString());
 
         return null;
