@@ -72,6 +72,7 @@ public class AuthPreFilter extends ZuulFilter {
         String uri = "/user";
         String accessToken = request.getHeader("Authorization");
         log.info(String.format("request %s [%s]", uri, context.getRequest().getMethod()));
+        System.out.println("accessToken : " + accessToken);
 
         DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
         try {

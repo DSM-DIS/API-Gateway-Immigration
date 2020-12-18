@@ -1,7 +1,6 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -16,7 +15,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.stream.Stream;
 
 @Component
 public class RoutingFilter extends ZuulFilter {
