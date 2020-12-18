@@ -77,7 +77,7 @@ public class AuthPreFilter extends ZuulFilter {
             System.out.println("강원 들어가기 전");
             Response<String> response = service.get(uri, accessToken).execute();
             System.out.println("강원 들어간 후");
-            System.out.println("가져온 userId : " + response.body());
+            System.out.println("가져온 userId :: " + response.body());
             request.setAttribute("userId", response.body());
         } catch (IOException e) {
             e.printStackTrace();
