@@ -47,9 +47,9 @@ public class RoutingFilter extends ZuulFilter {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-//                .client(new OkHttpClient().newBuilder().build())
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
+                .client(new OkHttpClient().newBuilder().build())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .build();
 
         String uri = (String) request.getAttribute("uri");
