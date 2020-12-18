@@ -58,6 +58,7 @@ public class AuthPreFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        System.out.println("유저 아이디를 얻기 위한 과정");
         RequestContext context = RequestContext.getCurrentContext();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -68,7 +69,7 @@ public class AuthPreFilter extends ZuulFilter {
                 .build();
 
         HttpServletRequest request = context.getRequest();
-        String uri = "user";
+        String uri = "/user";
         String accessToken = request.getHeader("Authorization");
 
         DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
