@@ -93,8 +93,8 @@ public class RoutingFilter extends ZuulFilter {
             e.printStackTrace();
         }
 
-        context.setResponseBody(new Gson().toJson(response.body()));
-        System.out.println("body : " + context.getResponseBody());
+//        context.setResponseBody(new Gson().toJson(response.body()));
+        context.setResponseBody(response.body());
         context.setResponseStatusCode(response.code());
         context.set("message", response.message());
         System.out.println("response.body : " + response.body());
