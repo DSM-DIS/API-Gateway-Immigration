@@ -2,6 +2,8 @@ package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.AuthorizationRequestConnectionService;
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
+import com.dsm.immigration.utils.form.UserIdWrapper;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -73,15 +75,13 @@ public class AuthPreFilter extends ZuulFilter {
         String uri = "/user";
         String accessToken = request.getHeader("Authorization");
         log.info(String.format("request %s [%s]", uri, context.getRequest().getMethod()));
-        System.out.println("accessToken : " + accessToken);
 
         AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
         try {
-            System.out.println("강원 들어가기 전");
             Response<String> response = service.get(accessToken).execute();
-            System.out.println("강원 들어간 후");
-            System.out.println("가져온 userId :: " + response.body());
-            request.setAttribute("userId", response.body());
+            String userId = new Gson().fromJson(response.body(), UserIdWrapper.class).getUserId();
+            System.out.println("userId : " + userId);
+            request.setAttribute("userId", userId);
         } catch (IOException e) {
             e.printStackTrace();
         }
