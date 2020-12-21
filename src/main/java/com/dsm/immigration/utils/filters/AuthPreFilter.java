@@ -79,7 +79,7 @@ public class AuthPreFilter extends ZuulFilter {
         AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
         try {
             Response<String> response = service.get(accessToken).execute();
-            String userId = new Gson().fromJson(response.body(), UserIdWrapper.class).getUserId();
+            String userId = new Gson().fromJson(response.body(), UserIdWrapper.class).getId();
             System.out.println("userId : " + userId);
             request.setAttribute("userId", userId);
         } catch (IOException e) {
