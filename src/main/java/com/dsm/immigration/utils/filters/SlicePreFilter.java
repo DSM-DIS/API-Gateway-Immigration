@@ -33,13 +33,6 @@ public class SlicePreFilter extends ZuulFilter {
         String method = request.getMethod();
 
         if(uri.equals("/user")) {
-//            if(method.equals("POST")) {
-//                request.setAttribute("baseUrl", "https://gangwon:8080");
-//            } else if(method.equals("GET")) {
-//                request.setAttribute("baseUrl", "https://gangwon:8080");
-//            } else if(method.equals("DELETE")) {
-//                request.setAttribute("baseUrl", "https://gangwon:8080");
-//            }
             request.setAttribute("baseUrl", "http://gangwon:8080");
         } else if(uri.equals("/auth")) {
             request.setAttribute("baseUrl", "http://gangwon:8080");
