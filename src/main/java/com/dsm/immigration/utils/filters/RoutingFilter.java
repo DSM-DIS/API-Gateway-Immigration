@@ -98,12 +98,6 @@ public class RoutingFilter extends ZuulFilter {
         context.setResponseBody(response.body());
         context.setResponseStatusCode(response.code());
         System.out.println("body : " + response.body());
-        try(final InputStream responseDataStream = context.getResponseDataStream()) {
-            String responseData = CharStreams.toString(new InputStreamReader(responseDataStream, "UTF-8"));
-            context.setResponseBody(responseData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return null;
     }
