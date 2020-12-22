@@ -1,11 +1,13 @@
 package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
+import com.google.common.io.CharStreams;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import okhttp3.OkHttpClient;
+import org.apache.catalina.connector.InputBuffer;
 import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -15,6 +17,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Component
 public class RoutingFilter extends ZuulFilter {
@@ -94,6 +98,12 @@ public class RoutingFilter extends ZuulFilter {
         context.setResponseBody(response.body());
         context.setResponseStatusCode(response.code());
         System.out.println("body : " + response.body());
+        try(final InputStream responseDataStream = context.getResponseDataStream()) {
+            String responseData = CharStreams.toString(new InputStreamReader(responseDataStream, "UTF-8"));
+            context.setResponseBody(responseData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
