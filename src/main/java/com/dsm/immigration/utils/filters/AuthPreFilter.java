@@ -49,7 +49,7 @@ public class AuthPreFilter extends ZuulFilter {
         if(httpMethodName.equals("POST") && uri.equals("/auth")) {           // 로그인
             System.out.println("로그인::로그인::로그인::로그인::로그인");
             return false;
-        } else if(httpMethodName.equals("POST") && uri.equals("/user")) {    // 회원가입
+        } else if(uri.equals("/user")) {                                     // 회원가입 & 유저 아이디 반환
             return false;
         } else if(uri.equals("/testtesttest")) {                             // 테스트
             return false;
