@@ -80,7 +80,7 @@ public class RoutingFilter extends ZuulFilter {
         
         if(uri.equals("/user") && method.equals("GET")) {
             AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
-            response = service.get(request.getHeader("Authorization"));
+            response = service.get(request.getHeader("Authorization")).execute();
         } else {
             DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
             try {
