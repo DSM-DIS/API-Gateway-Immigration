@@ -75,24 +75,30 @@ public class RoutingFilter extends ZuulFilter {
         System.out.println("userId : " + userId);
         System.out.println("context.body : " + body);
 
-        DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
         Response<String> response = null;
-        try {
-            if(method.equals("GET")) {
-                System.out.println("들어가기 전");
-                response = service.get(uri, userId).execute();
-                System.out.println("들어간 후");
-            } else if(method.equals("POST")) {
-                System.out.println("들어가기 전");
-                response = service.post(uri, userId, body).execute();
-                System.out.println("들어간 후");
-            } else if(method.equals("PATCH")) {
-                response = service.patch(uri, userId, body).execute();
-            } else if(method.equals("DELETE")) {
-                response = service.delete(uri, userId).execute();
+        
+        if(uri.equals("/user") && method.equals("GET")) {
+            AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
+            response = service.get(request.getHeader("Authorization"));
+        } else {
+            DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
+            try {
+                if(method.equals("GET")) {
+                    System.out.println("들어가기 전");
+                    response = service.get(uri, userId).execute();
+                    System.out.println("들어간 후");
+                } else if(method.equals("POST")) {
+                    System.out.println("들어가기 전");
+                    response = service.post(uri, userId, body).execute();
+                    System.out.println("들어간 후");
+                } else if(method.equals("PATCH")) {
+                    response = service.patch(uri, userId, body).execute();
+                } else if(method.equals("DELETE")) {
+                    response = service.delete(uri, userId).execute();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         context.setResponseBody(response.body());
