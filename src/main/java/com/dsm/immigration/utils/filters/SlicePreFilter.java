@@ -38,6 +38,8 @@ public class SlicePreFilter extends ZuulFilter {
             request.setAttribute("baseUrl", "http://gangwon:8080");
         } else if (uri.equals("/diary-book")) {
             request.setAttribute("baseUrl", "http://hamgyeong:8080");
+        } else if(uri.equals("/diary-book/participant")) {
+            request.setAttribute("baseUrl", "http://pyeongan:8892");
         } else if (uri.startsWith("/diary-book")) {
             if (method.equals("GET")) {
                 request.setAttribute("baseUrl", "http://jeju:4008");
@@ -46,8 +48,6 @@ public class SlicePreFilter extends ZuulFilter {
             }
         } else if(uri.equals("/user/diary-books")) {
             request.setAttribute("baseUrl", "http://hwanghae:8891");
-        } else if(uri.equals("/diary-book/participant")) {
-            request.setAttribute("baseUrl", "http://pyeongan:8892");
         } else if(uri.equals("/testtesttest")) {
             request.setAttribute("baseUrl", "http://hwanghae:8891");
         } else if (uri.equals("/user/test")) {
