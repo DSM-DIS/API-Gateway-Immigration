@@ -84,18 +84,23 @@ public class RoutingFilter extends ZuulFilter {
         } else {
             DiaryStoryRequestConnectionService service = retrofit.create(DiaryStoryRequestConnectionService.class);
             try {
-                if(method.equals("GET")) {
-                    System.out.println("들어가기 전");
-                    response = service.get(uri, userId).execute();
-                    System.out.println("들어간 후");
-                } else if(method.equals("POST")) {
-                    System.out.println("들어가기 전");
-                    response = service.post(uri, userId, body).execute();
-                    System.out.println("들어간 후");
-                } else if(method.equals("PATCH")) {
-                    response = service.patch(uri, userId, body).execute();
-                } else if(method.equals("DELETE")) {
-                    response = service.delete(uri, userId).execute();
+                switch (method) {
+                    case "GET":
+                        System.out.println("들어가기 전");
+                        response = service.get(uri, userId).execute();
+                        System.out.println("들어간 후");
+                        break;
+                    case "POST":
+                        System.out.println("들어가기 전");
+                        response = service.post(uri, userId, body).execute();
+                        System.out.println("들어간 후");
+                        break;
+                    case "PATCH":
+                        response = service.patch(uri, userId, body).execute();
+                        break;
+                    case "DELETE":
+                        response = service.delete(uri, userId).execute();
+                        break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -106,8 +111,9 @@ public class RoutingFilter extends ZuulFilter {
         context.setResponseStatusCode(response.code());
         System.out.println("body : " + response.body());
         System.out.println("code : " + response.code());
-        context.setThrowable(new Throwable(response.message()));
-        System.out.println(response.message());
+        System.out.println("message : " + response.message());
+//        context.setThrowable(new Throwable(response.message()));
+//        System.out.println(response.message());
 
         return null;
     }
