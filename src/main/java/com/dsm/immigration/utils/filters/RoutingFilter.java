@@ -79,9 +79,11 @@ public class RoutingFilter extends ZuulFilter {
         Response<String> response = null;
         
         if(uri.equals("/user") && method.equals("GET")) {
+            System.out.println("/user GET 여기로 들어옴");
             AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
             try {
-                response = service.get(request.getHeader("Authorization")).execute();
+                String authorization = request.getHeader("Authorization");
+                response = service.get(authorization).execute();
             } catch(Exception e) {
                 e.printStackTrace();
             }
