@@ -105,6 +105,7 @@ public class RoutingFilter extends ZuulFilter {
         context.setResponseBody(response.body());
         context.setResponseStatusCode(response.code());
         System.out.println("body : " + response.body());
+        System.out.println("code : " + response.code());
 
         return null;
     }
