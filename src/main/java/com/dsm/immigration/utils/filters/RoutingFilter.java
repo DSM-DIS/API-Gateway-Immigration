@@ -2,13 +2,11 @@ package com.dsm.immigration.utils.filters;
 
 import com.dsm.immigration.domains.service.AuthorizationRequestConnectionService;
 import com.dsm.immigration.domains.service.DiaryStoryRequestConnectionService;
-import com.google.common.io.CharStreams;
 import com.google.gson.GsonBuilder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import okhttp3.OkHttpClient;
-import org.apache.catalina.connector.InputBuffer;
 import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -18,8 +16,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 @Component
 public class RoutingFilter extends ZuulFilter {
@@ -77,12 +73,10 @@ public class RoutingFilter extends ZuulFilter {
         System.out.println("context.body : " + body);
 
         Response<String> response = null;
-        
         if(uri.equals("/user") && method.equals("GET")) {
-            System.out.println("/user GET 여기로 들어옴");
             AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
+            String authorization = request.getHeader("Authorization");
             try {
-                String authorization = request.getHeader("Authorization");
                 response = service.get(uri, authorization).execute();
             } catch(Exception e) {
                 e.printStackTrace();
