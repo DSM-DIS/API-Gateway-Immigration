@@ -53,6 +53,8 @@ public class AuthPreFilter extends ZuulFilter {
             return false;
         } else if(uri.startsWith("/check")) {
             return false;
+        } else if(uri.equals("/auth") && (httpMethodName.equals("PATCH") || httpMethodName.equals("DELETE"))) {
+            return false;
         } else if(uri.equals("/testtesttest")) {                             // 테스트
             return false;
         } else if(uri.equals("/user/test")) {                                // 테스트
