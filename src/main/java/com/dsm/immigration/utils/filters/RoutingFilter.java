@@ -77,7 +77,14 @@ public class RoutingFilter extends ZuulFilter {
             AuthorizationRequestConnectionService service = retrofit.create(AuthorizationRequestConnectionService.class);
             String authorization = request.getHeader("Authorization");
             try {
-                response = service.get(uri, authorization).execute();
+                switch (method) {
+                    case "GET":
+                        response = service.get(uri, authorization).execute();
+                        break;
+                    case "POST":
+                        response = service.post(uri, authorization, body).execute();
+                        break;
+                }
             } catch(Exception e) {
                 e.printStackTrace();
             }
