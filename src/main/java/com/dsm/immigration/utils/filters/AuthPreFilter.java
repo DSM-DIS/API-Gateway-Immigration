@@ -51,7 +51,7 @@ public class AuthPreFilter extends ZuulFilter {
             return false;
         } else if(uri.equals("/user")) {                                     // 회원가입 & 유저 아이디 반환
             return false;
-        } else if(uri.startWith("/check")) {
+        } else if(uri.startsWith("/check")) {
             return false;
         } else if(uri.equals("/testtesttest")) {                             // 테스트
             return false;
