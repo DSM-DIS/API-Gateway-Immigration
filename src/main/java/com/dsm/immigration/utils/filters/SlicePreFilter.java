@@ -32,9 +32,7 @@ public class SlicePreFilter extends ZuulFilter {
         String uri = (String) request.getAttribute("uri");
         String method = request.getMethod();
 
-        if(uri.equals("/user") || uri.equals("/user/username")) {
-            request.setAttribute("baseUrl", "http://gangwon:8080");
-        } else if(uri.equals("/auth")) {
+        if(uri.equals("/user") || uri.equals("/user/username") || uri.equals("/auth") || uri.startsWith("/check")) {
             request.setAttribute("baseUrl", "http://gangwon:8080");
         } else if (uri.equals("/diary-book")) {
             request.setAttribute("baseUrl", "http://hamgyeong:8080");
